@@ -1,18 +1,18 @@
 import React from 'react';
 import { Card, CardMedia, CardContent, Typography, Button } from '@mui/material';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import authService from '../services/authService';
-import cartService from '../services/cartService'; // Assuming you have a cartService
+import cartService from '../services/cartService';
 
 const PropertyCard = ({ property }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleBookNow = (property) => {
     if (!authService.isAuthenticated()) {
-      history.push('/login'); // Redirect to login page if not authenticated
+      navigate('/login'); // Redirect to login page if not authenticated
     } else {
       cartService.addToCart(property); // Add the property to the cart
-      history.push('/cart'); // Redirect to cart page after adding the property
+      navigate('/cart'); // Redirect to cart page after adding the property
     }
   };
 
